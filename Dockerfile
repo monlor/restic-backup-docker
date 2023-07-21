@@ -8,7 +8,8 @@ RUN unzip rclone-current-linux-${TARGETARCH}.zip && mv rclone-*-linux-${TARGETAR
 
 FROM ghcr.io/monlor/restic:0.14.0
 
-RUN apk add --update --no-cache heirloom-mailx fuse curl
+RUN apk add --update --no-cache s-nail fuse curl && \
+    ln -sf /usr/bin/mail /usr/bin/mailx
 
 COPY --from=rclone /bin/rclone /bin/rclone
 
